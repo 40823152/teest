@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>LED 控制</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+  <h1>LED 控制</h1>
+  <p><button id="ledOnBtn">開啟 LED</button></p>
+  <p><button id="ledOffBtn">關閉 LED</button></p>
+
+  <script>
+    $(document).ready(function() {
+      $("#ledOnBtn").click(function() {
+        $.ajax({
+          url: "/led/on",
+          method: "GET",
+          success: function(response) {
+            // 處理成功回應，您可以在這裡更新網頁顯示
+            console.log("LED 已開啟");
+          },
+          error: function(xhr, status, error) {
+            // 處理錯誤回應
+            console.error("發生錯誤:", error);
+          }
+        });
+      });
+
+      $("#ledOffBtn").click(function() {
+        $.ajax({
+          url: "/led/off",
+          method: "GET",
+          success: function(response) {
+            // 處理成功回應，您可以在這裡更新網頁顯示
+            console.log("LED 已關閉");
+          },
+          error: function(xhr, status, error) {
+            // 處理錯誤回應
+            console.error("發生錯誤:", error);
+          }
+        });
+      });
+    });
+  </script>
+</body>
+
+</html>
