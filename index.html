@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>LED 控制</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
   <h1>LED 控制</h1>
@@ -9,34 +10,30 @@
   <button id="ledOffBtn">關閉 LED</button>
 
   <script>
-  /*
-    function sendRequest(url) {
-      fetch(url)
-        .then(function(response) {
-          console.log(response);
-        })
-        .catch(function(error) {
-          console.log(error);
+    $(document).ready(function() {
+      $("#ledOnBtn").click(function() {
+        $.ajax({
+          url: "http://192.168.2.204/led/on",
+          success: function() {
+            console.log("LED 已開啟");
+          },
+          error: function() {
+            console.log("發生錯誤");
+          }
         });
-    }*/
-	
-	function sendRequest(url) {
-  fetch("proxy.php?url=" + encodeURIComponent(url))
-    .then(function(response) {
-      console.log(response);
-    })
-    .catch(function(error) {
-      console.log(error);
-    });
-}
+      });
 
-
-    document.getElementById("ledOnBtn").addEventListener("click", function() {
-      sendRequest("http://192.168.2.204/led/on");
-    });
-
-    document.getElementById("ledOffBtn").addEventListener("click", function() {
-      sendRequest("http://192.168.2.204/led/off");
+      $("#ledOffBtn").click(function() {
+        $.ajax({
+          url: "http://192.168.2.204/led/off",
+          success: function() {
+            console.log("LED 已關閉");
+          },
+          error: function() {
+            console.log("發生錯誤");
+          }
+        });
+      });
     });
   </script>
 </body>
