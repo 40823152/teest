@@ -1,4 +1,4 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
   <title>LED 控制</title>
@@ -7,30 +7,25 @@
   <h1>LED 控制</h1>
   <button id="ledOnBtn">開啟 LED</button>
   <button id="ledOffBtn">關閉 LED</button>
+
   <script>
-    function sendRequest(url) {
-      fetch("http://192.168.2.204/proxy?url=" + encodeURIComponent(url))
-        .then(function(response) {
-          console.log(response);
-        })
-        .catch(function(error) {
-          console.log(error);
-        });
-    }
+function sendRequest(url) {
+  fetch("proxy.php?url=" + encodeURIComponent(url))
+    .then(function(response) {
+      console.log(response);
+    })
+    .catch(function(error) {
+      console.log(error);
+    });
+}
 
     document.getElementById("ledOnBtn").addEventListener("click", function() {
-      sendRequest("http://192.168.2.204/led/on");
+      sendRequest("http://192.168.137.180/led/on");
     });
 
     document.getElementById("ledOffBtn").addEventListener("click", function() {
-      sendRequest("http://192.168.2.204/led/off");
+      sendRequest("http://192.168.137.180/led/off");
     });
   </script>
 </body>
 </html>
-```
-
-
-
-
-
