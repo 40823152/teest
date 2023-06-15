@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html>
 <head>
   <title>LED 控制</title>
@@ -9,9 +9,7 @@
   <button id="ledOffBtn">關閉 LED</button>
   <script>
     function sendRequest(url) {
-      fetch(url, {
-        mode: 'cors', // 添加跨域请求的模式
-      })
+      fetch("http://192.168.2.204/proxy?url=" + encodeURIComponent(url))
         .then(function(response) {
           console.log(response);
         })
@@ -30,3 +28,9 @@
   </script>
 </body>
 </html>
+```
+
+
+
+
+
