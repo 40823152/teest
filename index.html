@@ -5,28 +5,27 @@
 </head>
 <body>
   <h1>LED 控制</h1>
-  <p><a href="#" onclick="turnOnLED();">開啟 LED</a></p>
-  <p><a href="#" onclick="turnOffLED();">關閉 LED</a></p>
+  <button id="ledOnBtn">開啟 LED</button>
+  <button id="ledOffBtn">關閉 LED</button>
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script>
-    function turnOnLED() {
-      $.ajax({
-        url: "http://192.168.2.204/led/on",
-        success: function(response) {
+    function sendRequest(url) {
+      fetch(url)
+        .then(function(response) {
           console.log(response);
-        }
-      });
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
     }
 
-    function turnOffLED() {
-      $.ajax({
-        url: "http://192.168.2.204/led/off",
-        success: function(response) {
-          console.log(response);
-        }
-      });
-    }
+    document.getElementById("ledOnBtn").addEventListener("click", function() {
+      sendRequest("http://192.168.2.204/led/on");
+    });
+
+    document.getElementById("ledOffBtn").addEventListener("click", function() {
+      sendRequest("http://192.168.2.204/led/off");
+    });
   </script>
 </body>
 </html>
