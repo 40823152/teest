@@ -2,7 +2,6 @@
 <html>
 <head>
   <title>LED 控制</title>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
   <h1>LED 控制</h1>
@@ -10,17 +9,15 @@
   <button id="ledOffBtn">關閉 LED</button>
 
   <script>
+  
     function sendRequest(url) {
-      $.ajax({
-        url: "proxy.php?url=" + encodeURIComponent(url),
-        method: "GET",
-        success: function(response) {
+      fetch(url)
+        .then(function(response) {
           console.log(response);
-        },
-        error: function(error) {
+        })
+        .catch(function(error) {
           console.log(error);
-        }
-      });
+        });
     }
 
     document.getElementById("ledOnBtn").addEventListener("click", function() {
