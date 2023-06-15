@@ -7,11 +7,11 @@
   <h1>LED 控制</h1>
   <button id="ledOnBtn">開啟 LED</button>
   <button id="ledOffBtn">關閉 LED</button>
-
   <script>
-  
     function sendRequest(url) {
-      fetch(url)
+      fetch(url, {
+        mode: 'cors', // 添加跨域请求的模式
+      })
         .then(function(response) {
           console.log(response);
         })
